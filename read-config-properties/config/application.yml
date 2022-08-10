@@ -1,0 +1,15 @@
+#wuhan2020: 2020年初武汉爆发了新型冠状病毒，疫情严重，但是，我相信一切都会过去！武汉加油！中国加油！
+
+my-profile:
+  name: Guide
+  email: koushuangbwcx@aaa.com
+
+library:
+  location: 南京图书馆
+  books:
+    - name: 《少年读山海经》
+      description: 当代地质学家刘兴诗，以地理启蒙\文化认知\原典精读的视角，融合多学科知识，给孩子讲读一部完整的《山海经》！
+    - name: 《少年读史记》
+      description: 百万畅销书《少年读史记》精装典藏版礼盒装！含内容超丰富音频卡、《少年读史记》定制手账等专享好礼！
+    - name: 《少年读三国》
+      description: 真历史·真三国·大语文·小古文!

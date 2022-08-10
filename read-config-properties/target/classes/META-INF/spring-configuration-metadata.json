@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "name": "library",
+      "type": "com.example.readconfigproperties.LibraryProperties",
+      "sourceType": "com.example.readconfigproperties.LibraryProperties"
+    },
+    {
+      "name": "my-profile",
+      "type": "com.example.readconfigproperties.ProfileProperties",
+      "sourceType": "com.example.readconfigproperties.ProfileProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "library.books",
+      "type": "java.util.List<com.example.readconfigproperties.LibraryProperties$Book>",
+      "sourceType": "com.example.readconfigproperties.LibraryProperties"
+    },
+    {
+      "name": "library.location",
+      "type": "java.lang.String",
+      "sourceType": "com.example.readconfigproperties.LibraryProperties"
+    },
+    {
+      "name": "my-profile.email",
+      "type": "java.lang.String",
+      "sourceType": "com.example.readconfigproperties.ProfileProperties"
+    },
+    {
+      "name": "my-profile.handsome",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.example.readconfigproperties.ProfileProperties"
+    },
+    {
+      "name": "my-profile.name",
+      "type": "java.lang.String",
+      "sourceType": "com.example.readconfigproperties.ProfileProperties"
+    }
+  ],
+  "hints": []
+}
