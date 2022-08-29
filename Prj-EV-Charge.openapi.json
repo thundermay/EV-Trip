@@ -1,0 +1,235 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Prj-EV-Charge",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Internal Service"
+    }
+  ],
+  "paths": {
+    "/common/{operatorId}/price": {
+      "get": {
+        "summary": "查询充电资费",
+        "x-apifox-folder": "Internal Service",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Internal Service"
+        ],
+        "parameters": [
+          {
+            "name": "operatorId",
+            "in": "path",
+            "description": "运营商ID，全局唯一ID、0代表家充",
+            "required": true,
+            "example": "0",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/STATEGRID_HomePileTariff",
+                  "x-apifox-overrides": {}
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "参数不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "x-apifox-orders": [
+                    "code",
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "记录不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "x-apifox-orders": [
+                    "code",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/1466841/apis/api-35849140-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "STATEGRID_HomePileTariff": {
+        "type": "object",
+        "properties": {
+          "tariffID": {
+            "type": "number",
+            "description": "资费ID"
+          },
+          "startNum": {
+            "type": "number",
+            "minimum": 0,
+            "title": "",
+            "description": "开始电量"
+          },
+          "endNum": {
+            "description": "结束电量",
+            "type": "number"
+          },
+          "pricePlanList": {
+            "$ref": "#/components/schemas/PricePlan",
+            "x-apifox-overrides": {},
+            "description": "峰、谷、额外单价"
+          }
+        },
+        "x-apifox-orders": [
+          "tariffID",
+          "startNum",
+          "endNum",
+          "pricePlanList"
+        ],
+        "required": [
+          "startNum",
+          "endNum",
+          "pricePlanList",
+          "tariffID"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Internal"
+      },
+      "PricePlan": {
+        "type": "object",
+        "properties": {
+          "pricePlanId": {
+            "type": "number",
+            "minimum": 0,
+            "description": "价格计划ID"
+          },
+          "operatorId": {
+            "type": "string",
+            "description": "运营商ID，全局唯一ID、0代表家充"
+          },
+          "unitPriceList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UnitPrice",
+              "x-apifox-overrides": {}
+            },
+            "minItems": 1,
+            "description": "单价列表，最少1条"
+          },
+          "lastUpdateTime": {
+            "type": "string",
+            "description": "最后更新时间"
+          }
+        },
+        "x-apifox-orders": [
+          "pricePlanId",
+          "operatorId",
+          "unitPriceList",
+          "lastUpdateTime"
+        ],
+        "required": [
+          "unitPriceList"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Internal"
+      },
+      "UnitPrice": {
+        "type": "object",
+        "properties": {
+          "timeSpan": {
+            "$ref": "#/components/schemas/TimeSpan",
+            "x-apifox-overrides": {},
+            "description": "时间段，可选"
+          },
+          "unitPriceValue": {
+            "description": "单价，每度电",
+            "type": "number"
+          }
+        },
+        "x-apifox-orders": [
+          "timeSpan",
+          "unitPriceValue"
+        ],
+        "x-apifox-refs": {},
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Internal"
+      },
+      "TimeSpan": {
+        "type": "object",
+        "properties": {
+          "spanName": {
+            "type": "string",
+            "description": "时间段名称"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "开始时间"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "结束时间"
+          }
+        },
+        "x-apifox-orders": [
+          "spanName",
+          "startTime",
+          "endTime"
+        ],
+        "required": [
+          "spanName",
+          "startTime",
+          "endTime"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Internal"
+      }
+    }
+  }
+}
